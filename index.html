@@ -1,14 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
     <title>Book Library</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="nav">
+        <h3 class="logo">Book Library</h3>
+        <button class="button">Add book</button>
+      </nav>
+
+      <section class="books-grid">
+        <div class="book">
+          <h3 class="title">Title</h3>
+          <p class="author">Author</p>
+          <p class="page">Pages</p>
+          <p class="isCompleted">Is Completed</p>
+        </div>
+      </section>
+
+      <div class="popup-wrapper">
+        <div class="popup">
+            <div class="close">X</div>
+            <div class="popup-content">
+                <h2 class="title">Add Book</h2>
+                <label for="title">Title</label>
+                <input type="text" id="title">
+            </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
 </html>
