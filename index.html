@@ -12,29 +12,38 @@
     <div class="container">
       <nav class="nav">
         <h3 class="logo">Book Library</h3>
-        <button class="button">Add book</button>
+        <button class="button addBookButton">Add book</button>
       </nav>
 
-      <section class="books-grid">
-        <div class="book">
-          <h3 class="title">Title</h3>
-          <p class="author">Author</p>
-          <p class="page">Pages</p>
-          <p class="isCompleted">Is Completed</p>
-        </div>
-      </section>
+      <section class="books-grid"></section>
 
       <div class="popup-wrapper">
         <div class="popup">
-            <div class="close">X</div>
-            <div class="popup-content">
-                <h2 class="title">Add Book</h2>
-                <label for="title">Title</label>
-                <input type="text" id="title">
+          <div class="close">X</div>
+          <form class="popup-content" action="">
+            <h2 class="title">Add Book</h2>
+            <div class="popup-input">
+              <label for="title">Title</label>
+              <input type="text" id="title" />
             </div>
+            <div class="popup-input">
+              <label for="author">Author</label>
+              <input type="text" id="author" />
+            </div>
+            <div class="popup-input">
+              <label for="pages">Pages</label>
+              <input type="text" id="pages" />
+            </div>
+            <div class="popup-checkbox">
+              <label for="isRead">Have You Read it</label>
+              <input type="checkbox" name="isRead" id="isRead" class="checkbox"/>
+            </div>
+            <div class="popup-button">
+                <button type="submit" class="button upload">Add Book</button>
+            </div>
+        </form>
         </div>
       </div>
-
     </div>
   </body>
 </html>
