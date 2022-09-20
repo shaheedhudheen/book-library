@@ -30,33 +30,27 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
-// myLibrary.push(new Book("the hobbit", "anoos", 232, true));
-// myLibrary.push(new Book("the lord of the rings", "saif", 323, false));
-// myLibrary.push(new Book("harry potter", "athul", 354, false));
-// myLibrary.push(new Book("cucek", "abrar", 534, true));
-// myLibrary.push(new Book("castle black", "aslam", 234, true));
+myLibrary.push(new Book("the hobbit", "anoos", 232, true));
+myLibrary.push(new Book("the lord of the rings", "saif", 323, false));
+myLibrary.push(new Book("harry potter", "athul", 354, false));
+myLibrary.push(new Book("cucek", "abrar", 534, true));
+myLibrary.push(new Book("castle black", "aslam", 234, true));
 
 // Book.prototype.info = function () {
 //   return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
 // };
 
-// let theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 234, "not read yet");
-
 //add book to library function
 function addBookToLibrary(title, author, pages, read) {
   let book = new Book(title, author, pages, read);
-
   myLibrary.push(book);
 }
 
-// display every books added from library array
+// display added book (adding the book to book)
 function updateDisplay() {
-
-  
-
-  myLibrary.forEach((book) => {
+  myLibrary .forEach((book) => {
     let bookCard = document.createElement("div");
-    console.log(book);
+
     bookGrid.appendChild(bookCard);
     bookCard.classList.add("book");
 
@@ -79,10 +73,16 @@ function updateDisplay() {
     bookRead.textContent = book.read;
     bookRead.classList.add("read");
     bookCard.appendChild(bookRead);
-  });
+  })
 }
 
-
+function clearDisplay(){
+  let books = document.querySelectorAll('.book');
+  console.log(books);
+  books.forEach(book => {
+    book.remove()
+  })
+}
 
 //add or remove pop UP
 function showPopUp() {
@@ -101,7 +101,6 @@ addBookButton.addEventListener("click", showPopUp);
 close.addEventListener("click", hidePopUp);
 
 form.addEventListener("submit", (e) => {
-  console.log(e);
   if (form.reportValidity()) {
     console.log("checking");
     const title = inputTitle.value;
@@ -113,7 +112,9 @@ form.addEventListener("submit", (e) => {
     hidePopUp();
   }
   e.preventDefault();
-  console.log(myLibrary);
+
+  clearDisplay();
   updateDisplay()
 });
 
+updateDisplay()
