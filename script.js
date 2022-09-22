@@ -142,3 +142,4 @@ form.addEventListener("submit", (e) => {
   updateDisplay();
 });
 
+updateDisplay()
