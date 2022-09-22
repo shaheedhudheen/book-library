@@ -12,8 +12,8 @@
     justify-content: space-between;
     gap: 2rem;
     padding: 1rem 5rem;
-    background-color: #FFFBFB;
-    color: #1F2937;
+    background-color: #F2F2F2;
+    color: #181818;
 }
 
 .logo {
@@ -32,7 +32,7 @@
     font-size: 1rem;
     font-weight: 500;
     border-style: none;
-    background-color: #FF0000;
+    background-color: #5CB8E4;
     border-radius: 10px;
     color: #ffffff;
     cursor: pointer;
@@ -51,7 +51,7 @@
     width: 80%;
     margin: 0 auto;
     margin-top: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-template-rows: repeat(2, 1fr);
 }
 
@@ -62,9 +62,10 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem;
-    background-color: #1F2937;
-    color: #E5E7EB;
+    background-color: #F2F2F2;
+    color: #181818;
     border-radius: 20px;
+    max-width: 300px;
 
 }
 
@@ -85,7 +86,7 @@
     max-width: 300px;
     margin: 15% auto;
     padding: 2rem;
-    background: #F0EEF1;
+    background: #F2F2F2;
     position: relative;
     border-radius: 25px;
     z-index: 1;
@@ -97,7 +98,7 @@
     right: 20px;
     cursor: pointer;
     font-weight: 800;
-    color: #FF0000;
+    color: #5CB8E4;
 }
 
 .popup-content {
