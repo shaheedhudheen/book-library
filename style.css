@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+
 * {
     margin: 0;
     padding: 0;
@@ -32,7 +33,7 @@
     font-size: 1rem;
     font-weight: 500;
     border-style: none;
-    background-color: #5CB8E4;
+    background-color: #1D9BF0;
     border-radius: 10px;
     color: #ffffff;
     cursor: pointer;
@@ -65,7 +66,6 @@
     background-color: #F2F2F2;
     color: #181818;
     border-radius: 20px;
-    max-width: 300px;
 
 }
 

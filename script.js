@@ -30,10 +30,7 @@ function Book(title, author, pages, read) {
 }
 
 myLibrary.push(new Book("the hobbit", "anoos", 232, true));
-myLibrary.push(new Book("the lord of the rings", "saif", 323, false));
-myLibrary.push(new Book("harry potter", "athul", 354, false));
-myLibrary.push(new Book("cucek", "abrar", 534, true));
-myLibrary.push(new Book("castle black", "aslam", 234, true));
+
 
 // Book.prototype.info = function () {
 //   return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
@@ -76,9 +73,21 @@ function updateDisplay() {
     let deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.classList.add("button", "deleteButton");
-    
+    deleteButton.setAttribute("data-index", index);
     bookCard.appendChild(deleteButton);
-    console.log(index);
+  });
+
+  //delete Button
+  const deleteButton = document.querySelectorAll(".deleteButton");
+  deleteButton.forEach((button) => {
+    button.addEventListener("click", () => {
+      console.log("clicked");
+      const index = button.getAttribute("data-index");
+      myLibrary.splice(index, 1);
+      console.log(index);
+      clearDisplay();
+      updateDisplay();
+    });
   });
 }
 
@@ -94,7 +103,7 @@ function clearDisplay() {
 //delete button function
 // let deletebtn = document.querySelector(".deleteButton");
 // deletebtn.addEventListener('click', ()=>{
-  
+
 // })
 
 //add or remove pop UP
@@ -133,4 +142,3 @@ form.addEventListener("submit", (e) => {
   updateDisplay();
 });
 
-updateDisplay();
