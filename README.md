@@ -28,4 +28,4 @@ To see the assignment details - [Click Here](https://www.theodinproject.com/less
 
 -   [Google Fonts](https://fonts.google.com/)
 
-##Mobile and Tablet View Supported
+## Mobile and Tablet View Supported
