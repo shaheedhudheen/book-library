@@ -21,6 +21,17 @@ const inputPages = document.querySelector("#pages");
 const inputRead = document.querySelector("#isRead");
 const uploadButton = document.querySelector(".upload");
 
+//show or hide form modal
+addBookButton.addEventListener("click", () => {
+  popup.style.display = "block";
+  inputTitle.value = "";
+  inputAuthor.value = "";
+  inputPages.value = "";
+  inputRead.checked = false;
+});
+
+close.addEventListener("click", () => (popup.style.display = "none"));
+
 //create book constructor
 function Book(title, author, pages, read) {
   this.title = title;
@@ -29,117 +40,114 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
-myLibrary.push(new Book("the hobbit", "anoos", 232, true));
+//add book to library and display
 
+form.addEventListener("submit", (e) => {
+  popup.style.display = "none";
+  //check validity
+  if (form.reportValidity()) {
+    const title = inputTitle.value;
+    const author = inputAuthor.value;
+    const pages = inputPages.value;
+    let read = "";
+    inputRead.checked ? (read = "Completed") : (read = "Not Completed");
+    let book = new Book(title, author, pages, read);
+    myLibrary.push(book);
+  }
+  e.preventDefault();
+  clearDisplay();
+  updateDisplay();
+});
 
-// Book.prototype.info = function () {
-//   return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
-// };
-
-//add book to library function
-function addBookToLibrary(title, author, pages, read) {
-  let book = new Book(title, author, pages, read);
-  myLibrary.push(book);
-}
-
-// display added book (adding the book to book)
-function updateDisplay() {
-  myLibrary.forEach((book, index) => {
-    let bookCard = document.createElement("div");
-
-    bookGrid.appendChild(bookCard);
-    bookCard.classList.add("book");
-
-    let booktitle = document.createElement("p");
-    booktitle.textContent = book.title;
-    booktitle.classList.add("title");
-    bookCard.appendChild(booktitle);
-
-    let bookAuthor = document.createElement("p");
-    bookAuthor.textContent = book.author;
-    bookAuthor.classList.add("author");
-    bookCard.appendChild(bookAuthor);
-
-    let bookPages = document.createElement("p");
-    bookPages.textContent = book.pages;
-    bookPages.classList.add("page");
-    bookCard.appendChild(bookPages);
-
-    let bookRead = document.createElement("p");
-    bookRead.textContent = book.read;
-    bookRead.classList.add("read");
-    bookCard.appendChild(bookRead);
-
-    let deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete";
-    deleteButton.classList.add("button", "deleteButton");
-    deleteButton.setAttribute("data-index", index);
-    bookCard.appendChild(deleteButton);
-  });
-
-  //delete Button
+//remove book
+function removeBook() {
   const deleteButton = document.querySelectorAll(".deleteButton");
   deleteButton.forEach((button) => {
     button.addEventListener("click", () => {
-      console.log("clicked");
       const index = button.getAttribute("data-index");
       myLibrary.splice(index, 1);
-      console.log(index);
       clearDisplay();
       updateDisplay();
     });
   });
 }
 
+Book.prototype.updateStatus = function (index, value) {
+  myLibrary[index].read = value;
+};
+
+//update read status
+function updateReadStatus() {
+  const readStatus = document.querySelectorAll(".read");
+  readStatus.forEach((status) => {
+    status.addEventListener("click", () => {
+      const index = status.getAttribute("data-index");
+      let update = Object.create(Book.prototype);
+      if (myLibrary[index].read === "Completed") {
+        update.updateStatus(index, "Not Completed");
+        status.classList.add('notCompleted')
+      } else {
+        update.updateStatus(index, "Completed");
+        status.classList.add("completed");
+      }
+      clearDisplay();
+      updateDisplay();
+    });
+  });
+}
+
+// display added book
+function updateDisplay() {
+  myLibrary.forEach((book, index) => {
+    createBookCards(book, index);
+  });
+  removeBook();
+  updateReadStatus();
+}
+
+//create book cards
+function createBookCards(book, index) {
+  let bookCard = document.createElement("div");
+
+  bookGrid.appendChild(bookCard);
+  bookCard.classList.add("book");
+
+  let booktitle = document.createElement("p");
+  booktitle.textContent = book.title;
+  booktitle.classList.add("title");
+  bookCard.appendChild(booktitle);
+
+  let bookAuthor = document.createElement("p");
+  bookAuthor.textContent = book.author;
+  bookAuthor.classList.add("author");
+  bookCard.appendChild(bookAuthor);
+
+  let bookPages = document.createElement("p");
+  bookPages.textContent = book.pages;
+  bookPages.classList.add("page");
+  bookCard.appendChild(bookPages);
+
+  let bookRead = document.createElement("p");
+  bookRead.textContent = book.read;
+  bookRead.classList.add("read");
+  bookRead.setAttribute("data-index", index);
+  bookCard.appendChild(bookRead);
+
+  let deleteButton = document.createElement("button");
+  deleteButton.textContent = "Delete";
+  deleteButton.classList.add("button", "deleteButton");
+  deleteButton.setAttribute("data-index", index);
+  bookCard.appendChild(deleteButton);
+}
+
 //function to clear display
 function clearDisplay() {
   let books = document.querySelectorAll(".book");
-  console.log(books);
   books.forEach((book) => {
     book.remove();
   });
 }
 
-//delete button function
-// let deletebtn = document.querySelector(".deleteButton");
-// deletebtn.addEventListener('click', ()=>{
+updateDisplay();
 
-// })
-
-//add or remove pop UP
-
-function showPopUp() {
-  popup.style.display = "block";
-  inputTitle.value = "";
-  inputAuthor.value = "";
-  inputPages.value = "";
-}
-
-function hidePopUp() {
-  popup.style.display = "none";
-}
-
-addBookButton.addEventListener("click", showPopUp);
-
-close.addEventListener("click", hidePopUp);
-
-//add books to array from the form input field and update display
-
-form.addEventListener("submit", (e) => {
-  if (form.reportValidity()) {
-    console.log("checking");
-    const title = inputTitle.value;
-    const author = inputAuthor.value;
-    const pages = inputPages.value;
-    let read = "";
-    inputRead.checked ? (read = "Completed") : (read = "Not Completed");
-    addBookToLibrary(title, author, pages, read);
-    hidePopUp();
-  }
-  e.preventDefault();
-
-  clearDisplay();
-  updateDisplay();
-});
-
-updateDisplay()
+//create button to edit read status
