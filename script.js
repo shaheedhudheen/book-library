@@ -123,7 +123,7 @@ function createBookCards(book, index) {
   bookCard.appendChild(bookAuthor);
 
   let bookPages = document.createElement("p");
-  bookPages.textContent = book.pages;
+  bookPages.textContent = `${book.pages} Pages`;
   bookPages.classList.add("page");
   bookCard.appendChild(bookPages);
 
